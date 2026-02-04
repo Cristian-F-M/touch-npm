@@ -40,6 +40,52 @@ export function validateStructure(input: string) {
 	return { valid: true }
 }
 
+export function validateSyntax(input: string) {
+	const tokens = tokenize(input)
+	if (!tokens.length)
+		return { valid: false, error: 'Invalid characters detected' }
+
+	const stack: string[] = []
+
+	for (let i = 0; i < tokens.length; i++) {
+		const t = tokens[i]!
+		const prevT = tokens[i - 1]
+		const nextT = tokens[i + 1]
+
+		if (t.type === 'open') {
+			if (i > 0 && prevT?.type !== 'slash')
+				return {
+					valid: false,
+					error: `Group '${t.value}' must be preceded by '/' at position ${i}`,
+				}
+			stack.push(t.value)
+		}
+
+		if ([t.type, prevT?.type].every((t) => t === 'comma'))
+			return {
+				valid: false,
+				error: 'Double comma detected',
+			}
+
+		if (
+			t.type === 'slash' &&
+			(nextT?.type === 'comma' || nextT?.type === 'close')
+		)
+			return { valid: false, error: `Invalid "/" position at ${i}` }
+
+		if (t.type === 'close') {
+			const lastStack = stack.pop() as OpenSymbol
+
+			if (!lastStack || OPEN_CLOSE_PAIRS[lastStack] !== t.value)
+				return { valid: false, error: `Unexpected "${t.value}"` }
+		}
+	}
+
+	if (stack.length) return { valid: false, error: 'Unclosed group detected' }
+
+	return { valid: true }
+}
+
 function tokenize(input: string) {
 	const tokens: Token[] = []
 
