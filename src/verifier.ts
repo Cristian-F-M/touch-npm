@@ -5,7 +5,7 @@ import {
 	OPEN_SYMBOLS,
 	SEPARATOR_SYMBOLS,
 } from '@/constants/symbols'
-import type { CloseSymbol, OpenSymbol, Token } from '@/types/index.d.ts'
+import type { CloseSymbol, OpenSymbol, Token } from '@/types/verifier'
 
 export function validateInput(input: string) {
 	const structure = validateStructure(input)
