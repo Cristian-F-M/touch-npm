@@ -7,6 +7,23 @@ import {
 } from '@/constants/symbols'
 import type { CloseSymbol, OpenSymbol, Token } from '@/types/index.d.ts'
 
+export function validateInput(input: string) {
+	const structure = validateStructure(input)
+	const syntaxis = validateSyntax(input)
+	if (!structure.valid) return structure
+	if (!syntaxis.valid) return syntaxis
+
+	if (/,,/.test(input)) return { valid: false, error: 'Double comma detected' }
+	if (/{\s*}/.test(input))
+		return { valid: false, error: 'Empty group {} not allowed' }
+	if (/\/{2,}/.test(input))
+		return { valid: false, error: 'Double slash detected' }
+	if (/\/[)}\]]/.test(input))
+		return { valid: false, error: 'Empty folder group detected' }
+
+	return { valid: true }
+}
+
 export function validateStructure(input: string) {
 	const stack: string[] = []
 	const pairs: Record<string, string> = {
