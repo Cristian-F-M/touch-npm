@@ -25,7 +25,7 @@
     "formatter": {
       "quoteStyle": "single",
       "semicolons": "asNeeded",
-      "trailingCommas": "es5",
+      "trailingCommas": "none",
       "arrowParentheses": "always"
     }
   },
