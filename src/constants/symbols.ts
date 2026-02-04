@@ -1,3 +1,5 @@
+import type { OpenClosePairs } from '@/types'
+
 export const OPEN_SYMBOLS = {
 	'{': '{',
 	'(': '(',
@@ -23,3 +25,9 @@ export const TOKEN_TYPES = {
 	OPEN: 'open',
 	CLOSE: 'close',
 } as const
+
+export const OPEN_CLOSE_PAIRS = {
+	'(': ')',
+	'{': '}',
+	'[': ']',
+} satisfies OpenClosePairs

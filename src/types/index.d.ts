@@ -16,3 +16,5 @@ export type Token =
 	| { type: TokenType['COMMA'] }
 	| { type: TokenType['OPEN']; value: OpenSymbol }
 	| { type: TokenType['CLOSE']; value: CloseSymbol }
+
+export type OpenClosePairs = Record<OpenSymbol, CloseSymbol>
