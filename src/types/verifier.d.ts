@@ -1,7 +1,7 @@
 import type {
 	CLOSE_SYMBOLS,
 	OPEN_SYMBOLS,
-	TOKEN_TYPES,
+	TOKEN_TYPES
 } from '@/constants/symbols'
 
 export type OpenSymbol = keyof typeof OPEN_SYMBOLS

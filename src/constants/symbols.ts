@@ -1,15 +1,15 @@
-import type { OpenClosePairs } from '@/types'
+import type { OpenClosePairs } from '@/types/verifier'
 
 export const OPEN_SYMBOLS = {
 	'{': '{',
 	'(': '(',
-	'[': '[',
+	'[': '['
 } as const
 
 export const CLOSE_SYMBOLS = {
 	'}': '}',
 	')': ')',
-	']': ']',
+	']': ']'
 } as const
 
 export const SEPARATOR_SYMBOLS = { ',': ',' }
@@ -23,11 +23,11 @@ export const TOKEN_TYPES = {
 	DOT: 'dot',
 	COMMA: 'comma',
 	OPEN: 'open',
-	CLOSE: 'close',
+	CLOSE: 'close'
 } as const
 
 export const OPEN_CLOSE_PAIRS = {
 	'(': ')',
 	'{': '}',
-	'[': ']',
+	'[': ']'
 } satisfies OpenClosePairs

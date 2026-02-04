@@ -3,7 +3,7 @@ import {
 	EXTENSION_SEPARATORS,
 	OPEN_CLOSE_PAIRS,
 	OPEN_SYMBOLS,
-	SEPARATOR_SYMBOLS,
+	SEPARATOR_SYMBOLS
 } from '@/constants/symbols'
 import type { CloseSymbol, OpenSymbol, Token } from '@/types/verifier'
 
@@ -29,7 +29,7 @@ export function validateStructure(input: string) {
 	const pairs: Record<string, string> = {
 		'{': '}',
 		'[': ']',
-		'(': ')',
+		'(': ')'
 	}
 
 	for (let i = 0; i < input.length; i++) {
@@ -50,7 +50,7 @@ export function validateStructure(input: string) {
 	if (stack.length) {
 		return {
 			valid: false,
-			error: `Missing closing '${pairs[stack.at(-1)!]}'`,
+			error: `Missing closing '${pairs[stack.at(-1)!]}'`
 		}
 	}
 
@@ -73,7 +73,7 @@ export function validateSyntax(input: string) {
 			if (i > 0 && prevT?.type !== 'slash')
 				return {
 					valid: false,
-					error: `Group '${t.value}' must be preceded by '/' at position ${i}`,
+					error: `Group '${t.value}' must be preceded by '/' at position ${i}`
 				}
 			stack.push(t.value)
 		}
@@ -81,7 +81,7 @@ export function validateSyntax(input: string) {
 		if ([t.type, prevT?.type].every((t) => t === 'comma'))
 			return {
 				valid: false,
-				error: 'Double comma detected',
+				error: 'Double comma detected'
 			}
 
 		if (
