@@ -30,4 +30,3 @@ const tree = parse(input)
 const ext = getExtension(input)
 
 build(tree, process.cwd(), ext)
-
