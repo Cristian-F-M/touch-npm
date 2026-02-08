@@ -12,7 +12,7 @@ if (!args.length || args.includes('--help') || args.includes('-h')) {
 	process.exit(0)
 }
 
-if (args.includes('--docs')) {
+if (args.includes('--docs') || args.includes('-d')) {
 	log(`Opening ${DOCS_URL}`)
 	await open(DOCS_URL, { wait: true })
 	process.exit(0)
