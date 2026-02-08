@@ -8,6 +8,7 @@ Usage:
   touch <input>     Generate file structure    (e.g. touch src/{components,utils})
   touch --help      Show this help message     (e.g. touch --help)
   touch -h          Show this help message     (e.g. touch -h)
+  touch -docs       Open the documentation     (e.g. touch -docs)
 
 Features:
   Directories       Append '/' to name         (e.g. app/models/)
