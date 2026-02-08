@@ -9,7 +9,7 @@
     "test": "vitest"
   },
   "bin": {
-    "touch": "./dist/index"
+    "touch": "dist/index.js"
   },
   "files": ["dist"],
   "devDependencies": {
