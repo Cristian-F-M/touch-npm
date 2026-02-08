@@ -88,6 +88,8 @@ export function getExtension(input: string) {
 		i++
 	}
 
+	if (s.length <= 1) return ''
+
 	const ext = s.at(-1)
-	return ext ? `${ext}` : ''
+	return ext ?? ''
 }
