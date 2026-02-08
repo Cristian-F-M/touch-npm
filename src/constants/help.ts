@@ -24,3 +24,6 @@ Support:
   If you find this useful, support my work:
   https://www.buymeacoffee.com/cmorales
 `
+
+export const DOCS_URL =
+	'https://github.com/Cristian-F-M/touch-npm?tab=readme-ov-file#cmoralestouch'
