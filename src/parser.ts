@@ -18,12 +18,36 @@ export function parse(input: string) {
 		while (
 			i < input.length &&
 			!Object.hasOwn(
-				Object.assign({}, OPEN_SYMBOLS, CLOSE_SYMBOLS, SEPARATOR_SYMBOLS),
+				Object.assign(
+					{},
+					OPEN_SYMBOLS,
+					CLOSE_SYMBOLS,
+					SEPARATOR_SYMBOLS,
+					FOLDER_INDICATOR_SYMBOLS
+				),
 				char!
 			)
 		) {
-			if (!Object.hasOwn(FOLDER_INDICATOR_SYMBOLS, char!)) name += char
+			name += char
 			char = input[++i]
+		}
+
+		if (Object.hasOwn(FOLDER_INDICATOR_SYMBOLS, char ?? '')) {
+			i++
+			char = input[i]
+
+			if (!Object.hasOwn(OPEN_SYMBOLS, char ?? '')) {
+				const children: Node[] = []
+
+				if (
+					i < input.length &&
+					!Object.hasOwn(SEPARATOR_SYMBOLS, input[i]!) &&
+					!Object.hasOwn(CLOSE_SYMBOLS, input[i]!)
+				)
+					children.push(walk())
+
+				return { type: 'dir', name: name.trim(), children }
+			}
 		}
 
 		name.trim()
@@ -38,7 +62,7 @@ export function parse(input: string) {
 
 			while (i < input.length && char !== closer) {
 				children.push(walk())
-				if (char === ',') i++
+				if (input[i] === ',') i++
 				char = input[i]
 			}
 
