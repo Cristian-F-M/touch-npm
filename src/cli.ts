@@ -1,6 +1,7 @@
+import open from 'open'
 import { build } from '@/builder'
-import { HELP_MESSAGE } from '@/constants/help'
-import { error } from '@/logger'
+import { DOCS_URL, HELP_MESSAGE } from '@/constants/help'
+import { error, log } from '@/logger'
 import { getExtension, parse } from '@/parser'
 import { validateInput } from '@/verifier'
 
@@ -8,6 +9,12 @@ const args = process.argv.slice(2)
 
 if (!args.length || args.includes('--help') || args.includes('-h')) {
 	console.log(HELP_MESSAGE)
+	process.exit(0)
+}
+
+if (args.includes('--docs')) {
+	log(`Opening ${DOCS_URL}`)
+	await open(DOCS_URL, { wait: true })
 	process.exit(0)
 }
 
