@@ -76,3 +76,18 @@ export function parse(input: string) {
 
 	return walk()
 }
+
+export function getExtension(input: string) {
+	let s: string[] = []
+	let i = 0
+
+	const closes = Object.values(CLOSE_SYMBOLS)
+
+	while (s.length <= 1 && i < closes.length) {
+		s = input.split(closes[i]!)
+		i++
+	}
+  
+	const ext = s.at(-1)
+	return ext ? `${ext}` : ''
+}
