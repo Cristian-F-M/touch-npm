@@ -1,6 +1,6 @@
 {
   "name": "touch-npm",
-  "module": "index.ts",
+  "module": "/dist/index.js",
   "type": "module",
   "private": true,
   "devDependencies": {
