@@ -1,5 +1,6 @@
 {
-  "name": "touch-npm",
+  "version": "1.0.0",
+  "name": "@cmorales/touch",
   "module": "/dist/index.js",
   "type": "module",
   "private": true,
