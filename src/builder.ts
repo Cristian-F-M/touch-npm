@@ -26,7 +26,8 @@ export function build(tree: Node, base: string, defaultExt = '') {
 
 		let file = node.name
 
-		if (!fs.existsSync(file) && defaultExt) file += defaultExt
+		if (!fs.existsSync(file) && defaultExt && path.extname(file).length <= 1)
+			file += defaultExt
 
 		const filePath = path.join(current, file)
 
