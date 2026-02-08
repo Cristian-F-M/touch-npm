@@ -32,6 +32,8 @@ export function parse(input: string) {
 			char = input[++i]
 		}
 
+		name = name.trim()
+
 		if (Object.hasOwn(FOLDER_INDICATOR_SYMBOLS, char ?? '')) {
 			i++
 			char = input[i]
@@ -46,11 +48,9 @@ export function parse(input: string) {
 				)
 					children.push(walk())
 
-				return { type: 'dir', name: name.trim(), children }
+				return { type: 'dir', name, children }
 			}
 		}
-
-		name.trim()
 
 		if (Object.hasOwn(OPEN_SYMBOLS, char ?? '')) {
 			const opener = input[i++] as OpenSymbol
@@ -87,7 +87,7 @@ export function getExtension(input: string) {
 		s = input.split(closes[i]!)
 		i++
 	}
-  
+
 	const ext = s.at(-1)
 	return ext ? `${ext}` : ''
 }
