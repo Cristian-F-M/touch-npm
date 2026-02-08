@@ -11,13 +11,17 @@ export function build(tree: Node, base: string, defaultExt = '') {
 		if (node.type === 'dir') {
 			const dirPath = path.join(current, node.name)
 
+			if (fs.existsSync(dirPath)) warn(`exists: ${dirPath}`)
+
 			if (!fs.existsSync(dirPath)) {
 				fs.mkdirSync(dirPath, { recursive: true })
+				log(`created: ${dirPath}`)
 				dirs++
 			}
 
 			// biome-ignore lint/suspicious/useIterableCallbackReturn: It does not matter
 			node.children?.forEach((c) => walk(c, dirPath))
+			return
 		}
 
 		let file = node.name
