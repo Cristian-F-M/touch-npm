@@ -3,6 +3,14 @@
   "module": "/dist/index.js",
   "type": "module",
   "private": true,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "test": "vitest"
+  },
+  "bin": {
+    "touch": "./dist/index"
+  },
+  "files": ["dist"],
   "devDependencies": {
     "@biomejs/biome": "^2.3.13",
     "@types/bun": "latest",
