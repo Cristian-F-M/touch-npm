@@ -18,6 +18,12 @@ if (args.includes('--docs') || args.includes('-d')) {
 	process.exit(0)
 }
 
+if (args.includes('--version')) {
+	const { name, version } = await import('../package.json')
+	log(`${name} v${version}`)
+	process.exit(0)
+}
+
 const input = args[0]!.replace(/\s/g, '')
 const validation = validateInput(input)
 
