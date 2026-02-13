@@ -1,3 +1,4 @@
+import { log } from '@/logger'
 import { version } from '../../package.json'
 
 export const HELP_MESSAGE = `
@@ -29,3 +30,21 @@ Support:
 
 export const DOCS_URL =
 	'https://github.com/Cristian-F-M/touch-npm?tab=readme-ov-file#cmoralestouch'
+
+export const COMMANDS = {
+	help: {
+    flags: ['--help', '-h'],
+    run: () => console.log(HELP_MESSAGE)
+  },
+  docs: {
+    flags: ['--docs', '-d'],
+    run: () => log(`To see the documentation, visit: ${DOCS_URL}`)
+  },
+  version: {
+    flags: ['--version', '-v'],
+    run: async () => {
+      const { name, version } = await import('../../package.json')
+      log(`${name} v${version}`)
+    }
+  }
+} as const

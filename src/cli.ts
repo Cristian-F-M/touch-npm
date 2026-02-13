@@ -1,28 +1,12 @@
-import open from 'open'
 import { build } from '@/builder'
-import { DOCS_URL, HELP_MESSAGE } from '@/constants/help'
-import { error, log } from '@/logger'
+import { error } from '@/logger'
 import { getExtension, parse } from '@/parser'
 import { validateInput } from '@/verifier'
+import { showFlagsInfo } from './utils'
 
-const args = process.argv.slice(2)
+export const args = process.argv.slice(2)
 
-if (!args.length || args.includes('--help') || args.includes('-h')) {
-	console.log(HELP_MESSAGE)
-	process.exit(0)
-}
-
-if (args.includes('--docs') || args.includes('-d')) {
-	log(`Opening ${DOCS_URL}`)
-	await open(DOCS_URL, { wait: true })
-	process.exit(0)
-}
-
-if (args.includes('--version')) {
-	const { name, version } = await import('../package.json')
-	log(`${name} v${version}`)
-	process.exit(0)
-}
+await showFlagsInfo(args)
 
 const input = args[0]!.replace(/\s/g, '')
 const validation = validateInput(input)
