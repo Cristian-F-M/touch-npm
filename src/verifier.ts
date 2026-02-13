@@ -62,6 +62,9 @@ export function validateSyntax(input: string) {
 	if (!tokens.length)
 		return { valid: false, error: 'Invalid characters detected' }
 
+	if (input.endsWith('.'))
+		return { valid: false, error: 'Extension cannot be empty' }
+
 	const stack: string[] = []
 
 	for (let i = 0; i < tokens.length; i++) {
