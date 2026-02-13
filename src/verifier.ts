@@ -14,6 +14,7 @@ export function validateInput(input: string) {
 	if (!syntaxis.valid) return syntaxis
 
 	if (/,,/.test(input)) return { valid: false, error: 'Double comma detected' }
+	if (/\.\./.test(input)) return { valid: false, error: 'Double dot detected' }
 	if (/{\s*}/.test(input))
 		return { valid: false, error: 'Empty group {} not allowed' }
 	if (/\/{2,}/.test(input))
