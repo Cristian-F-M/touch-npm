@@ -86,7 +86,9 @@ export function validateSyntax(input: string) {
 
 		if (
 			t.type === 'slash' &&
-			(nextT?.type === 'comma' || nextT?.type === 'close')
+			(nextT?.type === 'comma' ||
+				nextT?.type === 'close' ||
+				nextT?.type === 'dot')
 		)
 			return { valid: false, error: `Invalid "/" position at ${i}` }
 
